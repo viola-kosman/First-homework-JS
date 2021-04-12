@@ -1,7 +1,7 @@
 // задача 1
 
 const sayHello  = function(name){
-    if (name == 'Mark'){
+    if (name == 'mark'){
     console.log('Hi,', 'Mark');
     }
     else {
@@ -13,7 +13,7 @@ sayHello('Mark');
 
 
 const sayHello1 = (name1) =>{
-    if (name1 == 'Mark'){
+    if (name1 == 'mark'){
         console.log('Hi,', 'Mark');
         }
     else {
@@ -31,6 +31,7 @@ sayHello1('Mark');
 const hypotenuse = function(n, m){
     const result = Math.sqrt(Math.pow(n, 2) + Math.pow(m, 2));
     return result;
+    
 }
 console.log(hypotenuse (3, 2) );
 
@@ -49,19 +50,23 @@ console.log(hypotenuse1 (3, 2) );
 // задача 3
 
 const min = function(a, b){
-    const result = Math.min(a, b);
-    return result;
+    if (typeof a === 'number' && typeof b === 'number'){
+    return Math.min(a, b);
+    }
+    return 'Error';
 }
 console.log(min (2, 5));
-console.log(min (1, 1));
+console.log(min (1, [1,2,3])) ;
 
 
 const min1 = (aa, bb) =>{
-    const result = Math.min(aa, bb);
-    return result;
-}
+    if (typeof aa === 'number' && typeof bb === 'number'){
+        return Math.min(aa, bb);
+        }
+        return 'Error';
+    }
 console.log(min1 (3, -1));
-
+console.log(min (1, '55')) ;
 
 
 
@@ -69,21 +74,15 @@ console.log(min1 (3, -1));
 
 // Задача 4
 
-const isEven = function (value1){
-    if (value1 % 2 == 0)
-       return true;
-    else 
-       return false;
+const isEven = function (value){
+    return value % 2 === 0;
 
 }
 console.log(isEven (33));
 
 
-const isEven1 = (value2) =>{
-    if (value2 % 2 == 0)
-       return true;
-    else 
-       return false;
+const isEven1 = (value) =>{
+    return value % 2 === 0
 
 }
 console.log(isEven (44));
@@ -96,19 +95,24 @@ console.log(isEven (44));
 
 // Задача 5
 
-const deleteChars = function(strr){
-    const result = strr.slice (1, -1);
-    return result;
+const deleteChars = function(str){
+    if (typeof str === 'string'){
+    return str.slice (1, -1);
+    }
+    return 'Error';
 }
 console.log(deleteChars('Hello'));
+console.log(deleteChars(5));
 
 
-
-const deleteChars1 = (strrr) =>{
-    const result = strrr.slice (1, -1);
-    return result;
-}
-console.log(deleteChars('A'));
+const deleteChars1 = (str) =>{
+    if (typeof str === 'string'){
+        return str.slice (1, -1);
+        }
+        return 'Error';
+    }
+    console.log(deleteChars('A'));
+    console.log(deleteChars([5]));
 
 
 
@@ -119,16 +123,24 @@ console.log(deleteChars('A'));
 // Задача 6
 
 const fn6 = function(str){
+    if (typeof str === 'string'){
     return str[0].toUpperCase() + str.toLowerCase().slice(1);
+    }
+    return 'this is not a string'
 }
-console.log(fn6 ('пиТеР') )
+console.log(fn6 ('пиТеР') );
+console.log(fn6 (444) );
 
 
 
 const fn61 = (str) =>{
-    return str[0].toUpperCase() + str.toLowerCase().slice(1);
-}
-console.log(fn61 ('javaScript') )
+    if (typeof str === 'string'){
+        return str[0].toUpperCase() + str.toLowerCase().slice(1);
+        }
+        return 'this is not a string'
+    }
+console.log(fn61 ('javaScript') );
+console.log(fn6 ([1, 2, 3]) );
 
 
 
@@ -140,22 +152,49 @@ console.log(fn61 ('javaScript') )
 
 const array1 = [1, 2, 3, '4', '5', 6];
 
-
-
 const mixArray = function(newArray) {
-    const result = [];
+        const result = [];
+    
+        for (let i = 0; i < newArray.length; i++) {
+        if (typeof newArray[i] ==='number' && newArray === Array){
+           result.push(newArray[i].toString())
+        }
+        else if (typeof newArray[i] ==='number' && newArray === Array){
+            result.push(+newArray[i]);
+        }
+        else {
+            return 'error';
+        }
+    
 
-    for (let i = 0; i < newArray.length; i++) {
-    if (typeof newArray[i] ==='number'){
-       result.push(newArray[i].toString())
+    return result;
+
     }
-    else {
-        result.push(+newArray[i]);
+    
     }
-}
-return result;
-}
-console.log(mixArray(array1));
+    console.log(mixArray(array1));
+    console.log(mixArray(5));
+
+
+
+
+
+// const mixArray = function(newArray) {
+//     const result = [];
+
+//     for (let i = 0; i < newArray.length; i++) {
+//     if (typeof newArray[i] ==='number' ){
+//        result.push(newArray[i].toString())
+//     }
+//     else {
+//         result.push(+newArray[i]);
+//     }
+// }
+// return result;
+
+// }
+// console.log(mixArray(array1));
+// console.log(mixArray(5));
 
 
 
@@ -196,24 +235,34 @@ console.log(newArray ([4, 5, 6], [7, 8, 9]) );
 
 // Задача 9
 
-const stringCutter = function (str, num){
-    if (str.length <= num) {
-        return str;
-        } 
-    else {
-        return str.slice(0, num) + '...';
-        }
-}
-console.log(stringCutter('Привет мир!', 6));
-stringCutter('Привет мир!', 6);
 
 
 const stringCutter1 = (str, num) =>{
-    if (str.length <= num) {
+    if (str.length <= num && typeof str === 'string' && typeof num === 'number'){
         return str;
-        } 
-    else {
+    } else if (str.length > num && typeof str === 'string' && typeof num === 'number') {
         return str.slice(0, num) + '...';
-        }
+    } else {
+        return 'Error';
+    
+    }
 }
 console.log(stringCutter1('Hello world', 5));
+console.log(stringCutter1('Привет мир', 6));
+
+
+
+
+
+const stringCutter = function (str, num){
+    if (str.length <= num && typeof str === 'string' && typeof num === 'number'){
+        return str;
+    } else if (str.length > num && typeof str === 'string' && typeof num === 'number') {
+        return str.slice(0, num) + '...';
+    } else {
+        return 'Error';
+    
+    }
+}
+    console.log(stringCutter('Hello world', '5'));
+
