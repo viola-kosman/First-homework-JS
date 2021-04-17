@@ -1,27 +1,33 @@
 // задача 1
 
 const sayHello  = function(name){
-    if (name == 'mark'){
-    console.log('Hi,', 'Mark');
-    }
-    else {
-        console.log('Hello,' + name);
-    }
-}
-sayHello('Olga');
-sayHello('Mark');
+    if (typeof name !== 'string') return;
+    const favouriteFriend = 'mark';
 
 
-const sayHello1 = (name1) =>{
-    if (name1 == 'mark'){
-        console.log('Hi,', 'Mark');
-        }
-    else {
-            console.log('Hello,' + name1);
-    } 
-}
-sayHello1('Viola');
-sayHello1('Mark');
+    if (name.toLowerCase() === favouriteFriend) {
+    return `Hi, ${name}`;
+    }
+    return `Hello, ${name}`;
+    
+};
+console.log(sayHello('Mark'));
+console.log(sayHello('Misha'));
+
+
+const sayHello1 = (name) =>{
+    if (typeof name !== 'string') return;
+    const favouriteFriend = 'mark';
+
+
+    if (name.toLowerCase() === favouriteFriend) {
+    return `Hi, ${name}`;
+    }
+    return `Hello, ${name}`;
+    
+};
+console.log(sayHello1('mark'));
+console.log(sayHello1('Vika'));
 
 
 
@@ -29,6 +35,7 @@ sayHello1('Mark');
 // задача 2
 
 const hypotenuse = function(n, m){
+    if (typeof n !== "number" || typeof m !== "number") return;
     const result = Math.sqrt(Math.pow(n, 2) + Math.pow(m, 2));
     return result;
     
@@ -37,8 +44,9 @@ console.log(hypotenuse (3, 2) );
 
 
 
-const hypotenuse1 = (nn, mm) =>{
-    const result = Math.sqrt(Math.pow(nn, 2) + Math.pow(mm, 2));
+const hypotenuse1 = (n, m) =>{
+    if (typeof n !== "number" || typeof m !== "number") return;
+    const result = Math.sqrt(Math.pow(n, 2) + Math.pow(m, 2));
     return result;
 }
 console.log(hypotenuse1 (3, 2) );
@@ -50,21 +58,22 @@ console.log(hypotenuse1 (3, 2) );
 // задача 3
 
 const min = function(a, b){
-    if (typeof a === 'number' && typeof b === 'number'){
+    if (typeof a !== 'number' || typeof b !== 'number')
+    return;
+
     return Math.min(a, b);
-    }
-    return 'Error';
-}
+    
+};
 console.log(min (2, 5));
 console.log(min (1, [1,2,3])) ;
 
 
-const min1 = (aa, bb) =>{
-    if (typeof aa === 'number' && typeof bb === 'number'){
-        return Math.min(aa, bb);
-        }
-        return 'Error';
-    }
+const min1 = (a, b) =>{
+    if (typeof a !== 'number' || typeof b !== 'number')
+    return;
+
+    return Math.min(a, b);
+};
 console.log(min1 (3, -1));
 console.log(min (1, '55')) ;
 
@@ -75,6 +84,8 @@ console.log(min (1, '55')) ;
 // Задача 4
 
 const isEven = function (value){
+    if (typeof value !== "number") return;
+
     return value % 2 === 0;
 
 }
@@ -82,6 +93,7 @@ console.log(isEven (33));
 
 
 const isEven1 = (value) =>{
+    if (typeof value !== "number") return;
     return value % 2 === 0
 
 }
@@ -153,25 +165,17 @@ console.log(fn6 ([1, 2, 3]) );
 const array1 = [1, 2, 3, '4', '5', 6];
 
 const mixArray = function(newArray) {
-        const result = [];
-    
-        for (let i = 0; i < newArray.length; i++) {
-        if (typeof newArray[i] ==='number' && newArray === Array){
-           result.push(newArray[i].toString())
+    if (!Array.isArray(newArray)) return;
+    const result = [];
+    for (let i = 0; i < newArray.length; i++) {
+        if (typeof newArray[i] === 'number'){
+            result.push(newArray[i].toString())
+        } else {
+            result.push(+newArray[i])
         }
-        else if (typeof newArray[i] ==='number' && newArray === Array){
-            result.push(+newArray[i]);
-        }
-        else {
-            return 'error';
-        }
-    
-
+    }
     return result;
-
-    }
-    
-    }
+};
     console.log(mixArray(array1));
     console.log(mixArray(5));
 
@@ -179,26 +183,8 @@ const mixArray = function(newArray) {
 
 
 
-// const mixArray = function(newArray) {
-//     const result = [];
-
-//     for (let i = 0; i < newArray.length; i++) {
-//     if (typeof newArray[i] ==='number' ){
-//        result.push(newArray[i].toString())
-//     }
-//     else {
-//         result.push(+newArray[i]);
-//     }
-// }
-// return result;
-
-// }
-// console.log(mixArray(array1));
-// console.log(mixArray(5));
-
-
-
 const mixArray1 = (array11) =>{
+    if (!Array.isArray(array11)) return;
     const result = [];
     for (let i = 0; i < array11.length; i++) {
         if (typeof array11[i] === 'number'){
@@ -222,7 +208,7 @@ const newArray = function(ar1, ar2){
 }
 console.log(newArray ([1,2,3], [4,5,6]) );
 
-const newArray1 = (ar11, ar22) =>{
+const newArray1 = (ar1, ar2) =>{
     const result = ar1.concat(ar2);
     return result;
 }
